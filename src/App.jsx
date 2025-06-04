@@ -1,5 +1,12 @@
+import React from 'react';
+import { MessageBox } from './components/MessageBox'
+import { Thoughts } from './components/Thoughts'
+
 export const App = () => {
   return (
-    <h1>Happy Thoughts</h1>
+    <>
+      <MessageBox />
+      <Thoughts />
+    </>
   )
 }
