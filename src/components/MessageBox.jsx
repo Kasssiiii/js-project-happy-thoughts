@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import "./MessageBox.css";
 
-export const MessageBox = () => {
+export const MessageBox = ({posts, setPosts}) => {
   const [post, setPost] = useState("");
 
   const sendPost = () => {

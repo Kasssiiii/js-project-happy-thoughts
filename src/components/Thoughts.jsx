@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Thought } from "./Thought";
 import { getLatest } from "../thoughtsAPI";
 
-export const Thoughts = () => {
-  const [posts, setPosts] = useState([]);
-
+export const Thoughts = ({posts, setPosts}) => {
+  
   useEffect(() => {
     getLatest((code, data) => {
       if (code === 200) {
