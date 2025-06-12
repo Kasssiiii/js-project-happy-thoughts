@@ -15,10 +15,6 @@ export const Thoughts = () => {
     });
   }, []);
 
-  getLatest((code, data) => {
-    console.log(data);
-  });
-
   return (
     <>
       {posts.map((post) => (

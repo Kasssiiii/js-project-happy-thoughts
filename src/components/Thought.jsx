@@ -4,7 +4,6 @@ import moment from "moment";
 import "./Thought.css";
 
 export const Thought = ({ post }) => {
-  console.log(post);
   return (
     <div className="postBox">
       <p> {post.message} </p>
