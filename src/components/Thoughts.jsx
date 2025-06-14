@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import { Thought } from "./Thought";
 import { getLatest } from "../thoughtsAPI";
 
-export const Thoughts = ({posts, setPosts}) => {
-  
+export const Thoughts = ({ posts, setPosts }) => {
   useEffect(() => {
     getLatest((code, data) => {
       if (code === 200) {
@@ -16,8 +15,8 @@ export const Thoughts = ({posts, setPosts}) => {
 
   return (
     <>
-      {posts.map((post) => (
-        <Thought key={post._id} post={post} />
+      {posts.map((post, index) => (
+        <Thought key={index} post={post} />
       ))}
     </>
   );
