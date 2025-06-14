@@ -1,12 +1,20 @@
 import React, { useState } from "react";
 
 import "./MessageBox.css";
+import { sendPost } from "../thoughtsAPI";
 
-export const MessageBox = ({posts, setPosts}) => {
+export const MessageBox = ({ posts, setPosts }) => {
   const [post, setPost] = useState("");
 
-  const sendPost = () => {
-    console.log("sending post");
+  const sendThought = () => {
+    sendPost(post, (code, data) => {
+      if (code === 200) {
+        setPosts([data, ...posts]);
+        setPost("");
+      } else {
+        console.log(data);
+      }
+    });
   };
 
   return (
@@ -18,7 +26,7 @@ export const MessageBox = ({posts, setPosts}) => {
         value={post}
         onChange={(ev) => setPost(ev.target.value)}
       />
-      <button onClick={sendPost} className="sendPost">
+      <button onClick={sendThought} className="sendPost">
         ❤️ Send Happy Thought! ❤️
       </button>
     </form>
