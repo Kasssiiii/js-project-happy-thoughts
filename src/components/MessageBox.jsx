@@ -19,10 +19,11 @@ export const MessageBox = ({ posts, setPosts }) => {
 
   return (
     <form className="messageBox" onSubmit={(ev) => ev.preventDefault()}>
-      <label>What's making you happy right now? </label>
+      <label for="message"> What's making you happy right now? </label>
       <textarea
         className="messageArea"
         type="text"
+        id="message"
         value={post}
         onChange={(ev) => setPost(ev.target.value)}
       />
