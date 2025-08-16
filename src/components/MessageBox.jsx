@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "./MessageBox.css";
 import { sendPost } from "../thoughtsAPI";
 
-export const MessageBox = ({ posts, setPosts }) => {
+export const MessageBox = ({ posts, setPosts, userData }) => {
   const [post, setPost] = useState("");
 
   const sendThought = () => {

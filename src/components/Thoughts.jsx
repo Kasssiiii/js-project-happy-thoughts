@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Thought } from "./Thought";
 import { getLatest } from "../thoughtsAPI";
 
-export const Thoughts = ({ posts, setPosts }) => {
+export const Thoughts = ({ posts, setPosts, userData }) => {
   useEffect(() => {
     getLatest((code, data) => {
       if (code === 200) {

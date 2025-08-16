@@ -46,3 +46,25 @@ export const likePost = (id, response) => {
   };
   getResponse(`thoughts/${id}/like`, params, null, response);
 };
+
+export const loginUser = (username, password, response) => {
+    const body = {
+      userName: username,
+      password: password,
+    };
+    const params = {
+      method: "POST",
+    };
+    getResponse(`users/${username}`, params, body, response);
+};
+
+export const registerUser = (username, password, response) => {
+    const body = {
+      user: username,
+      password: password,
+    };
+    const params = {
+      method: "POST",
+    };
+    getResponse(`users`, params, body, response);
+};
