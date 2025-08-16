@@ -16,7 +16,7 @@ export const Thoughts = ({ posts, setPosts, userData }) => {
   return (
     <>
       {posts.map((post, index) => (
-        <Thought key={index} post={post} />
+        <Thought key={index} post={post} userData={userData} />
       ))}
     </>
   );
