@@ -16,6 +16,12 @@
     justify-content: space-between;
 }
 
+.leftDetails {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .like {
     background-color: #CACACA;
     width: 2rem;

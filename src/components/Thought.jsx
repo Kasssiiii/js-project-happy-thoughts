@@ -7,6 +7,7 @@ import { likePost, deletePost, editPost } from "../thoughtsAPI";
 export const Thought = ({ post, userData }) => {
   const [tick, tock] = useState(false);
   const [visible, setVisible] = useState(true);
+  const [postText, setPostText] = useState(post.message);
 
   const likeAction = () => {
     likePost(post._id, (code, data) => {
@@ -30,7 +31,15 @@ export const Thought = ({ post, userData }) => {
   };
 
   const editAction = () => {
-    console.log("Edit post");
+    if (!userData) {
+      return;
+    }
+    editPost(post._id, postText, userData.token, (code, data) => {
+      if (code === 200) {
+        post.message = postText;
+        tock(!tick);
+      }
+    });
   };
 
   const isSameUser = userData && userData.user === post.userName;
@@ -41,24 +50,36 @@ export const Thought = ({ post, userData }) => {
 
   return (
     <div className="postBox">
-      <p> {post.message} </p>
+      {isSameUser
+        ? <textarea
+          className="messageArea"
+          type="text"
+          value={postText}
+          onChange={(ev) => setPostText(ev.target.value)}
+        />
+        : <p> {post.message} </p>}
+
       <div className="details">
-        <div>
-          <button className="like" onClick={likeAction}>
-            ❤️
-          </button>{" "}
-          x{post.hearts}
+        <div className="leftDetails">
+          <div>
+            <button className="like" onClick={likeAction}>
+              ❤️
+            </button>{" "}
+            x{post.hearts}
+          </div>
+          {isSameUser && (
+            <>
+              <div className="delete">
+                <button onClick={deleteAction}>🗑️</button>
+              </div>
+              {postText !== post.message &&
+                <div className="edit">
+                  <button onClick={editAction}>💾</button>
+                </div>
+              }
+            </>
+          )}
         </div>
-        {isSameUser && (
-          <>
-            <div className="edit">
-              <button onClick={editAction}>✏️</button>
-            </div>
-            <div className="delete">
-              <button onClick={deleteAction}>🗑️</button>
-            </div>
-          </>
-        )}
         <div> sent {moment(post.createdAt).fromNow()}</div>
       </div>
     </div>

@@ -81,5 +81,11 @@ export const deletePost = (id, token, response) => {
 };
 
 export const editPost = (id, text, token, response) => {
-  // todo check working
+  const body = {
+    message: text,
+  };
+  const params = {
+    method: "PATCH",
+  };
+  getResponse(`thoughts/${id}`, params, body, token, response);
 };
