@@ -5,13 +5,16 @@
 //const APIUri = "https://js-project-api-vj6h.onrender.com";
 const APIUri = "http://localhost:8080";
 
-const getResponse = async (path, params, body, response) => {
+const getResponse = async (path, params, body, authorization, response) => {
   try {
     if (body) {
       params.body = JSON.stringify(body);
       params.headers = {
         "Content-Type": "application/json",
       };
+      if (authorization) {
+        params.headers.Authorization = authorization;
+      }
     }
     const resp = await fetch(`${APIUri}/${path}`, params);
     if (resp.ok) {
@@ -27,24 +30,24 @@ const getResponse = async (path, params, body, response) => {
 };
 
 export const getLatest = (response) => {
-  getResponse("thoughts", {}, null, response);
+  getResponse("thoughts", {}, null, null, response);
 };
 
-export const sendPost = (text, response) => {
+export const sendPost = (text, token, response) => {
   const body = {
     message: text,
   };
   const params = {
     method: "POST",
   };
-  getResponse("thoughts", params, body, response);
+  getResponse("thoughts", params, body, token, response);
 };
 
 export const likePost = (id, response) => {
   const params = {
     method: "POST",
   };
-  getResponse(`thoughts/${id}/like`, params, null, response);
+  getResponse(`thoughts/${id}/like`, params, null, null, response);
 };
 
 export const loginUser = (username, password, response) => {
@@ -55,7 +58,7 @@ export const loginUser = (username, password, response) => {
     const params = {
       method: "POST",
     };
-    getResponse(`users/${username}`, params, body, response);
+    getResponse(`users/${username}`, params, body, null, response);
 };
 
 export const registerUser = (username, password, response) => {
@@ -66,5 +69,5 @@ export const registerUser = (username, password, response) => {
     const params = {
       method: "POST",
     };
-    getResponse(`users`, params, body, response);
+    getResponse(`users`, params, body, null, response);
 };

@@ -7,7 +7,13 @@ export const MessageBox = ({ posts, setPosts, userData }) => {
   const [post, setPost] = useState("");
 
   const sendThought = () => {
-    sendPost(post, (code, data) => {
+    // ensure user data is present
+    if (!userData) {
+      console.log("User is not logged in");
+      return;
+    }
+
+    sendPost(post, userData.token, (code, data) => {
       if (code === 200) {
         setPosts([data, ...posts]);
         setPost("");
@@ -27,7 +33,7 @@ export const MessageBox = ({ posts, setPosts, userData }) => {
         value={post}
         onChange={(ev) => setPost(ev.target.value)}
       />
-      <button onClick={sendThought} className="sendPost">
+      <button onClick={sendThought} className={userData ? "sendPost sendPostEnabled" : "sendPost sendPostDisabled"} disabled={!userData}>
         ❤️ Send Happy Thought! ❤️
       </button>
     </form>

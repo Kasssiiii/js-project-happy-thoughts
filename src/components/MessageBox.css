@@ -15,8 +15,6 @@
 }
 
 .sendPost {
-    cursor: pointer;
-    background-color: #FFADAD;
     font-weight: bold;
     border-radius: 20px;
     border: none;
@@ -25,4 +23,14 @@
     width: 12rem;
     font-size: 0.8rem;
     color: black;
+}
+
+.sendPostDisabled {
+    cursor: not-allowed;
+    background-color: #cccccc;
+}
+
+.sendPostEnabled {
+    cursor: pointer;
+    background-color: #FFADAD;
 }
