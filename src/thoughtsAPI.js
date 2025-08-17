@@ -2,8 +2,8 @@
 //const APIUri = "https://happy-thoughts-api-4ful.onrender.com";
 
 // my API with user authentication
-//const APIUri = "https://js-project-api-vj6h.onrender.com";
-const APIUri = "http://localhost:8080";
+const APIUri = "https://js-project-api-vj6h.onrender.com";
+//const APIUri = "http://localhost:8080";
 
 const getResponse = async (path, params, body, authorization, response) => {
   try {
